@@ -23,7 +23,7 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<?php Yii::setAlias('@Da/User', '@app/modules/usuario/src');?>
 <div class="wrap">
     <?php
     NavBar::begin([

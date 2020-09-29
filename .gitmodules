@@ -1,0 +1,5 @@
+
+[submodule "modules/usuario"]
+	path = modules/usuario
+	url = git@github.com:TonisOrmisson/yii2-usuario.git
+
