@@ -6,12 +6,23 @@
     "type": "project",
     "license": "BSD-3-Clause",
     "minimum-stability": "stable",
+
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.6.0",
         "yiisoft/yii2": "~2.0.5",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "dektrium/yii2-user":"0.9.*"
+
+        "2amigos/yii2-usuario":"dev-master",
+        "2amigos/2fa-library": "^1.0",
+        "2amigos/qrcode-library": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -23,8 +34,12 @@
         "codeception/specify": "~0.4.3"
     },
     "config": {
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
     },
+
     "scripts": {
         "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject"
