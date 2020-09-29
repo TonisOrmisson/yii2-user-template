@@ -37,9 +37,13 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'user' => [
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
+        ],
     ],
     'modules' => [
-        'user' => require(__DIR__. '/user.php'),
+        //'user' => require(__DIR__. '/user.php'),
     ],
     'params' => $params,
 ];
