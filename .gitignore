@@ -34,3 +34,5 @@ Vagrantfile
 
 # actual config
 config/db.php
+config/auth.php
+

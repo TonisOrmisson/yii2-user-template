@@ -38,6 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             Yii::$app->user->isGuest ? '': ['label' => 'User management', 'url' => ['/user/admin']],
+            Yii::$app->user->isGuest ? '': ['label' => 'My Profile', 'url' => ['/user/settings/profile']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Sign in', 'url' => ['/user/security/login']] :
                 ['label' => 'Sign out (' . Yii::$app->user->identity->username . ')',

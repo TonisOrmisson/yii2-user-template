@@ -9,6 +9,7 @@ $config = [
     'aliases' => require(__DIR__ . '/aliases.php'),
 
     'components' => [
+        'authClientCollection' => require(__DIR__ . '/auth.php'),
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Q3RvvGeA0IPRTfyXmNeXd46HHcT1raba',
@@ -38,10 +39,7 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
     ],
     'modules' => [
-        'user' => [
-            'class' => Da\User\Module::class,
-            'administrators' => ['admin']
-        ],
+        'user' => require(__DIR__. '/user.php'),
     ],
     'params' => $params,
 ];

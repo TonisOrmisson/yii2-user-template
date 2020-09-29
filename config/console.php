@@ -10,6 +10,7 @@ $config = [
     'aliases' => require(__DIR__ . '/aliases.php'),
     'controllerNamespace' => 'app\commands',
     'components' => [
+        'authClientCollection' => require(__DIR__ . '/auth.php'),
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -37,10 +38,7 @@ $config = [
         ],
     ],
     'modules' => [
-        'user' => [
-            'class' => Da\User\Module::class,
-            'administrators' => ['admin']
-        ],
+        'user' => require(__DIR__. '/user.php'),
     ],
 
 ];
