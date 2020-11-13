@@ -8,7 +8,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -23,7 +22,8 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?php var_dump(Yii::getAlias('@Da/User')); die; ?>
+
+
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -37,14 +37,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            Yii::$app->user->isGuest ? '': ['label' => 'User management', 'url' => ['/user/admin']],
-            Yii::$app->user->isGuest ? '': ['label' => 'My Profile', 'url' => ['/user/settings/profile']],
-            Yii::$app->user->isGuest ?
-                ['label' => 'Sign in', 'url' => ['/user/security/login']] :
-                ['label' => 'Sign out (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/user/security/logout'],
-                    'linkOptions' => ['data-method' => 'post']],
-            ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]        ],
+            ['label' => 'User management', 'url' => ['/user/admin']],
+            ['label' => 'My Profile', 'url' => ['/user/settings/profile']],
+            ['label' => 'Sign in', 'url' => ['/user/security/login']],
+            ['label' => 'Register', 'url' => ['/user/registration/register']]
+        ]
     ]);
     NavBar::end();
     ?>

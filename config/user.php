@@ -1,5 +1,5 @@
 <?php
 return [
-    'class' => Da\User\Module::class,
+    'class' => \Da\User\Module::class,
     'administrators' => ['admin']
 ];

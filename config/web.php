@@ -5,9 +5,8 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'Da\User\Bootstrap'],
     'aliases' => require(__DIR__ . '/aliases.php'),
-
     'components' => [
         'authClientCollection' => require(__DIR__ . '/auth.php'),
         'request' => [
@@ -37,13 +36,27 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            // Disable index.php
+            'showScriptName' => false,
+            // Disable r= routes
+            'enablePrettyUrl' => true,
+            'rules' => array(
+
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/user'],
+
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ),
         ],
+
     ],
     'modules' => [
-        //'user' => require(__DIR__. '/user.php'),
+        'user' => [
+            'class' => Da\User\Module::class,
+        ]
     ],
     'params' => $params,
 ];
@@ -54,15 +67,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '172.20.0.1']
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '172.20.0.1'],
     ];
 }
-
 return $config;

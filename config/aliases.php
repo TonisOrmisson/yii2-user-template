@@ -5,6 +5,6 @@ return [
     '@npm' => '@vendor/npm-asset',
     '@app/runtime' => '@runtime',
 
-    '@Da/User' => '@app/modules/usuario/src',
+    '@Da/User' => '@app/modules/usuario/src/User',
 
 ];
