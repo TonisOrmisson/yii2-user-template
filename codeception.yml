@@ -1,37 +1,28 @@
 actor: Tester
 paths:
-    tests: tests
-    log: tests/_output
-    data: tests/_data
-    helpers: tests/_support
+    tests: modules/usuario/tests
+    log: modules/usuario/tests/_output
+    data: modules/usuario/tests/_data
+    helpers: modules/usuario/tests/_support
 settings:
     bootstrap: _bootstrap.php
-    memory_limit: 1024M
     colors: true
+    memory_limit: 1024M
 modules:
     config:
+        Db:
+            dsn: 'mysql:host=usuario_db;dbname=usuario-test'
+            user: 'root'
+            password: 'password'
+            dump: modules/usuario/tests/_data/schema.sql
         Yii2:
-            configFile: 'config/test.php'
+            configFile: 'modules/usuario/tests/_app/config/test.php'
             cleanup: false
-
-# To enable code coverage:
-#coverage:
-#    #c3_url: http://localhost:8080/index-test.php/
-#    enabled: true
-#    #remote: true
-#    #remote_config: '../tests/codeception.yml'
-#    whitelist:
-#        include:
-#            - models/*
-#            - controllers/*
-#            - commands/*
-#            - mail/*
-#    blacklist:
-#        include:
-#            - assets/*
-#            - config/*
-#            - runtime/*
-#            - vendor/*
-#            - views/*
-#            - web/*
-#            - tests/*
+coverage:
+    enabled: true
+    whitelist:
+        include:
+            - src/*
+        exclude:
+            - src/User/Migration/*
+            - src/User/resources/*
