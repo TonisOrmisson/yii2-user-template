@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -23,7 +24,6 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -37,12 +37,20 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'User management', 'url' => ['/user/admin']],
-            ['label' => 'My Profile', 'url' => ['/user/settings/profile']],
-            ['label' => 'Sign in', 'url' => ['/user/security/login']],
-            ['label' => 'Register', 'url' => ['/user/registration/register']]
-        ]
+            Yii::$app->user->isGuest ? '': ['label' => 'User management', 'url' => ['/user/admin']],
+            Yii::$app->user->isGuest ? '': ['label' => 'My Profile', 'url' => ['/user/settings/profile']],
+            Yii::$app->user->isGuest ?
+                ['label' => 'Sign in', 'url' => ['/user/security/login']] :
+                ['label' => 'Sign out (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/user/security/logout'],
+                    'linkOptions' => ['data-method' => 'post']],
+            ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]        ],
     ]);
+    echo \lajax\languagepicker\widgets\LanguagePicker::widget([
+        'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_BUTTON,
+        'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
+    ]);
+
     NavBar::end();
     ?>
 

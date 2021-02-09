@@ -25,7 +25,9 @@
 
         "2amigos/yii2-selectize-widget": "^1.1",
         "yiisoft/yii2-authclient": "^2.1",
-        "yiisoft/yii2-httpclient": "^2.0"
+        "yiisoft/yii2-httpclient": "^2.0",
+        "auth0/auth0-php": "^7.4",
+        "lajax/yii2-language-picker": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

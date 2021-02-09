@@ -1,11 +1,10 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'Da\User\Bootstrap'],
+    'bootstrap' => ['log', 'Da\User\Bootstrap','languagepicker'],
     'aliases' => require(__DIR__ . '/aliases.php'),
     'components' => [
         'authClientCollection' => require(__DIR__ . '/auth.php'),
@@ -13,6 +12,13 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Q3RvvGeA0IPRTfyXmNeXd46HHcT1raba',
         ],
+        'languagepicker' => [
+            'class' => 'lajax\languagepicker\Component',
+            // List of available languages (icons only)
+            'languages' => ['et','ru', 'en'],
+
+        ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -54,9 +60,7 @@ $config = [
 
     ],
     'modules' => [
-        'user' => [
-            'class' => Da\User\Module::class,
-        ]
+        'user' =>            require(__DIR__ . '/user.php'),
     ],
     'params' => $params,
 ];
