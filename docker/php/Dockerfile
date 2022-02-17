@@ -1,4 +1,4 @@
-FROM hermsi/alpine-fpm-php:7.3
+FROM hermsi/alpine-fpm-php:7.4
 
 RUN docker-php-ext-install pcntl bcmath xml zip intl
 
