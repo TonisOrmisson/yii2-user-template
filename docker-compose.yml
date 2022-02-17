@@ -8,7 +8,7 @@ services:
       - ./docker/nginx/conf/nginx.conf:/etc/nginx/conf/nginx.conf
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     ports:
-      - 8098:80
+      - 8068:80
     links:
       - php
     depends_on:
