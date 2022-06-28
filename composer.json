@@ -33,6 +33,7 @@
         "friendsofphp/php-cs-fixer": "^2.3",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "@stable",
+        "yiisoft/yii2-debug": "~2.1.0",
         "codeception/verify": "^0.3.3",
         "codeception/codeception": "*",
         "roave/security-advisories": "dev-master",
@@ -45,6 +46,9 @@
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
         }
     },
 

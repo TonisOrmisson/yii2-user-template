@@ -4,7 +4,12 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'Da\User\Bootstrap','languagepicker'],
+    'bootstrap' => [
+        'log',
+        'Da\User\Bootstrap',
+        'languagepicker',
+        \app\bootstraps\AppBootstrap::class
+        ],
     'aliases' => require(__DIR__ . '/aliases.php'),
     'components' => [
         'authClientCollection' => require(__DIR__ . '/auth.php'),
@@ -26,18 +31,23 @@ $config = [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+            'class' => \yii\symfonymailer\Mailer::class,
             'useFileTransport' => true,
         ],
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'traceLevel' => 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
+                    'logFile' => '@runtime/logs/error.log',
                     'levels' => ['error', 'warning'],
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'logFile' => '@runtime/logs/app.log',
+                    'categories' => ['app'],
+                    'levels' => ['info'],
+                    'logVars' => [],
                 ],
             ],
         ],
@@ -74,11 +84,5 @@ if (YII_ENV_DEV) {
         'allowedIPs' => ['127.0.0.1', '::1', '172.20.0.1']
     ];
 
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1', '172.20.0.1'],
-    ];
 }
 return $config;

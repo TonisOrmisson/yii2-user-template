@@ -6,7 +6,7 @@ $db = require(__DIR__ . '/db.php');
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', \Da\User\Bootstrap::class],
     'aliases' => require(__DIR__ . '/aliases.php'),
     'controllerNamespace' => 'app\commands',
     'components' => [
@@ -23,6 +23,14 @@ $config = [
             ],
         ],
         'db' => $db,
+        'mailer' => [
+            'class' => \yii\symfonymailer\Mailer::class,
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
+        ],
+
     ],
     'params' => $params,
     'controllerMap' => [
@@ -43,12 +51,5 @@ $config = [
 
 ];
 
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
-}
 
 return $config;

@@ -1,6 +1,15 @@
-FROM hermsi/alpine-fpm-php:7.4
+FROM php:8.0-fpm-alpine
 
-RUN docker-php-ext-install pcntl bcmath xml zip intl
+RUN apk update && apk add gettext-dev ffmpeg libxml2 libxml2-dev
+RUN docker-php-ext-install pcntl bcmath xml
+
+RUN apk add --no-cache zip libzip-dev libpng-dev
+RUN docker-php-ext-install zip gd
+
+RUN apk add icu-dev
+RUN docker-php-ext-install intl gettext
+
+RUN docker-php-ext-install pdo pdo_mysql
 
 # get compser
 RUN	apk update && \
@@ -15,6 +24,7 @@ rm -rf /var/cache/apk/*
 # set key for getting private repos
 RUN	apk add --update openssh
 ADD id_rsa /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
 
 # Create known_hosts
 RUN touch /root/.ssh/known_hosts
@@ -22,23 +32,9 @@ RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 
 #add mysql-client && gitfor running tests
-RUN	apk add --update mysql-client git
+RUN	apk add --update mysql-client git nano
 
-#install xdebug
 
-RUN apk update \
-    && apk add  --no-cache libmcrypt libmcrypt-dev \
-    && apk add --no-cache --virtual build-dependencies icu-dev \
-    libxml2-dev freetype-dev libpng-dev libjpeg-turbo-dev g++ make autoconf \
-    && docker-php-source extract \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug redis \
-    && docker-php-source delete \
-    && apk del build-dependencies \
-    && apk del libmcrypt-dev \
-    && rm -rf /tmp/*
-COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug-dev.ini
-
-# fix the alpinr iconv issue
+# fix the alpine iconv issue
 RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
