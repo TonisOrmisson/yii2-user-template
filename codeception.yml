@@ -1,17 +1,17 @@
 actor: Tester
+bootstrap: _bootstrap.php
 paths:
     tests: modules/usuario/tests
     log: modules/usuario/tests/_output
     data: modules/usuario/tests/_data
     helpers: modules/usuario/tests/_support
 settings:
-    bootstrap: _bootstrap.php
     colors: true
     memory_limit: 1024M
 modules:
     config:
         Db:
-            dsn: 'mysql:host=usuario_db;dbname=usuario-test'
+            dsn: 'mysql:host=usuario_db;dbname=app_test'
             user: 'root'
             password: 'password'
             dump: modules/usuario/tests/_data/schema.sql
