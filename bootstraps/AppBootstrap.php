@@ -2,7 +2,6 @@
 
 namespace app\bootstraps;
 
-use Da\User\Event\UserEvent;
 use yii\base\BootstrapInterface;
 use Yii;
 
@@ -17,10 +16,6 @@ class AppBootstrap implements BootstrapInterface
 
         Yii::info("ping", 'app');
 
-        $user->on(UserEvent::EVENT_BEFORE_BLOCK, function (UserEvent $event) {
-            Yii::info("ping block", 'app');
-            Yii::info("user blocked: {$event->sender->username}", 'app');
-        });
     }
 
 }
