@@ -11,5 +11,6 @@ return [
     'enableTwoFactorAuthentication' => true,
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
-    ]
+    ],
+    'viewPath' => '@app/modules/views-bs4/src/views',
 ];
