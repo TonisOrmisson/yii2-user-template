@@ -12,8 +12,12 @@ class AppBootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         Yii::info("ping", 'app');
-        /** @var \Da\User\Model\User $user */
+        /** @var ?\Da\User\Model\User $user */
         $user = $app->user->identity;
+
+        if (!($user instanceof \Da\User\Model\User)) {
+            return;
+        }
 
         Yii::info("ping", 'app');
 
