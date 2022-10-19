@@ -1,3 +1,9 @@
 [submodule "usuario"]
 	path = modules/usuario
 	url = git@github.com:TonisOrmisson/yii2-usuario.git
+[submodule "modules/yii-usuario-views-bootstrap3"]
+	path = modules/yii-usuario-views-bootstrap3
+	url = git@github.com:TonisOrmisson/yii-usuario-views-bootstrap3.git
+[submodule "modules/yii-usuario-views-bootstrap4"]
+	path = modules/yii-usuario-views-bootstrap4
+	url = git@github.com:TonisOrmisson/yii-usuario-views-bootstrap4.git
