@@ -12,5 +12,6 @@ return [
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
     ],
-    'viewPath' => '@app/modules/views-bs4/src/views',
+    'viewPath' => '@vendor/yii-usuario/yii-usuario-views-bootstrap3/src/views',
+
 ];

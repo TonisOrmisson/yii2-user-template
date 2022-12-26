@@ -2,10 +2,9 @@
 
 namespace app\controllers;
 
+use Da\User\Module;
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 
 class SiteController extends Controller
 {
@@ -33,6 +32,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('user');
+        $module->gdprConsentMessage = Yii::t('app', "My custom message that I have in my apps i18n");
+        $module->gdprPrivacyPolicyUrl = "https://example.com/".Yii::$app->language;
+
         return $this->render('index');
     }
 
