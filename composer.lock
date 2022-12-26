@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efb999c046d597f8a8dc3ffa426f6dd4",
+    "content-hash": "89815ae87c73fb211f05a62a4774a0c1",
     "packages": [
         {
             "name": "2amigos/2fa-library",
@@ -318,7 +318,7 @@
             "version": "v5.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
             },
             "dist": {

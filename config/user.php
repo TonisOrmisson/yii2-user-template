@@ -7,6 +7,7 @@ return [
     //'enableSwitchIdentities' => false,
     'administrators' => ['admin'],
     'enableGdprCompliance' => true,
+    'gdprRequireConsentToAll' => true,
     'gdprPrivacyPolicyUrl' => "/privacy",
     'enableTwoFactorAuthentication' => true,
     'mailParams' => [

@@ -1,15 +1,32 @@
-FROM php:8.0-fpm-alpine
+FROM php:8.1-fpm-alpine
 
 RUN apk update && apk add gettext-dev ffmpeg libxml2 libxml2-dev
 RUN docker-php-ext-install pcntl bcmath xml
 
-RUN apk add --no-cache zip libzip-dev libpng-dev
-RUN docker-php-ext-install zip gd
+RUN apk add --no-cache zip libzip-dev
+RUN docker-php-ext-install zip
 
 RUN apk add icu-dev
 RUN docker-php-ext-install intl gettext
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apk add oniguruma-dev
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install pdo
+
+RUN apk add freetype-dev libjpeg-turbo-dev libpng-dev
+RUN docker-php-ext-install gd
+
+# telnet etc
+RUN apk add busybox-extras
+
+RUN docker-php-ext-install pdo mysqli pdo_mysql
+
+# Mailparse
+RUN apk add --no-cache \
+        $PHPIZE_DEPS \
+    && pecl install mailparse
+RUN docker-php-ext-enable mailparse
+
 
 # get compser
 RUN	apk update && \
@@ -20,21 +37,22 @@ RUN	apk update && \
 	apk del curl openssl && \
 rm -rf /var/cache/apk/*
 
-
 # set key for getting private repos
 RUN	apk add --update openssh
-ADD id_rsa /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
 
 # Create known_hosts
-RUN touch /root/.ssh/known_hosts
+RUN mkdir /root/.ssh && touch /root/.ssh/known_hosts
 # Add bitbuckets key
 RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 
-#add mysql-client && gitfor running tests
-RUN	apk add --update mysql-client git nano
+#add mysql-client for running tests
+RUN	apk add --update mysql-client
+
+RUN	apk add nano
 
 
-# fix the alpine iconv issue
-RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
+RUN pecl install pcov
+RUN docker-php-ext-enable pcov
+
+RUN apk add git
