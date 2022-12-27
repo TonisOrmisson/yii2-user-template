@@ -2,10 +2,10 @@
     "name": "tonisormisson/yii2-user-template",
     "description": "Yii 2 Basic Project Template implementing Yii2-user",
     "keywords": ["yii2", "framework", "basic", "project template"],
-    "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
 
     "repositories": [
         {
@@ -24,10 +24,10 @@
 
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
-        "auth0/auth0-php": "^7.4",
         "lajax/yii2-language-picker": "^1.2",
         "kartik-v/yii2-widget-select2": "^2.2",
         "yiisoft/yii2-bootstrap5": "^2.0"
+
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.3",
