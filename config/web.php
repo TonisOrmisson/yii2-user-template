@@ -67,12 +67,18 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
         ],
+        'session' => Da\User\Service\SessionHistory\SessionHistoryDecorator::class,
 
     ],
     'modules' => [
         'user' =>            require(__DIR__ . '/user.php'),
     ],
     'params' => $params,
+    'container' => [
+        'singletons' => [
+            Da\User\Service\SessionHistory\TerminateSessionsServiceInterface::class => Da\User\Service\SessionHistory\TerminateSessionsService::class
+        ]
+    ]
 ];
 
 if (YII_ENV_DEV) {

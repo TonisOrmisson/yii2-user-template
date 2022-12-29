@@ -42,6 +42,7 @@ $config = [
             ],
             'migrationNamespaces' => [
                 'Da\User\Migration',
+                'Da\User\Migration\Session',
             ],
         ],
     ],

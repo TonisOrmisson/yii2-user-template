@@ -1,4 +1,5 @@
 <?php
+/** @var array $params */
 return [
     'class' => \Da\User\Module::class,
     'allowUnconfirmedEmailLogin'=>true,
@@ -10,6 +11,7 @@ return [
     'gdprRequireConsentToAll' => true,
     'gdprPrivacyPolicyUrl' => "/privacy",
     'enableTwoFactorAuthentication' => true,
+    'enableSessionHistory' => true,
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
     ],
