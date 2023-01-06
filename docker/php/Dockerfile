@@ -51,8 +51,15 @@ RUN	apk add --update mysql-client
 RUN	apk add nano
 
 
-
 RUN pecl install pcov
 RUN docker-php-ext-enable pcov
 
 RUN apk add git
+
+
+# Add xdebug
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
+RUN apk add --update linux-headers
+RUN pecl install xdebug-3.2.0
+RUN docker-php-ext-enable xdebug
+RUN apk del -f .build-deps

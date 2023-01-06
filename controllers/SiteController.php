@@ -37,6 +37,11 @@ class SiteController extends Controller
         $module->gdprConsentMessage = Yii::t('app', "My custom message that I have in my apps i18n");
         $module->gdprPrivacyPolicyUrl = "https://example.com/".Yii::$app->language;
 
+        $var1 = 1;
+        $va2 = 2;
+        var_dump($this->module->params);die;
+        echo $var1 + $va2;
+
         return $this->render('index');
     }
 
