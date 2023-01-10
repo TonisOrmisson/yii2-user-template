@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.0-fpm-alpine
 
 RUN apk update && apk add gettext-dev ffmpeg libxml2 libxml2-dev
 RUN docker-php-ext-install pcntl bcmath xml
