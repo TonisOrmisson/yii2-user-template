@@ -12,6 +12,7 @@ return [
     'gdprPrivacyPolicyUrl' => "/privacy",
     'enableTwoFactorAuthentication' => true,
     'enableSessionHistory' => true,
+    'allowAccountDelete' => true,
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
     ],
