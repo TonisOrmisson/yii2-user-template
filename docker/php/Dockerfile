@@ -52,3 +52,8 @@ RUN docker-php-ext-enable xdebug mailparse
 RUN apk del -f .build-deps
 RUN apk add jq
 
+# add imagick
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS imagemagick-dev \
+&& pecl install imagick \
+&& docker-php-ext-enable imagick \
+&& apk del .build-deps

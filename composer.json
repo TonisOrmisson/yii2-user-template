@@ -20,7 +20,7 @@
         "yiisoft/yii2-symfonymailer": "^2|^3",
 
         "2amigos/2fa-library": "^1.0",
-        "2amigos/qrcode-library": "^2.0",
+        "2amigos/qrcode-library": "^3.0",
 
         "yiisoft/yii2-authclient": "^2.1",
         "yiisoft/yii2-httpclient": "^2.0",
@@ -42,7 +42,8 @@
         "codeception/module-yii2": "^1.1",
         "codeception/module-asserts": "^2|^3",
         "codeception/module-db": "^2|^3",
-        "phpstan/phpstan": "^1.8"
+        "phpstan/phpstan": "^1.8",
+        "yiisoft/yii2-debug": "^2.1"
     },
     "config": {
         "platform": {
