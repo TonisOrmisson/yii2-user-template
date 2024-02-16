@@ -1,4 +1,4 @@
-FROM php:8.0-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 RUN apk update && apk add gettext-dev ffmpeg libxml2 libxml2-dev
 RUN docker-php-ext-install pcntl bcmath xml
@@ -11,7 +11,6 @@ RUN docker-php-ext-install intl gettext
 
 RUN apk add oniguruma-dev
 RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install pdo
 
 RUN apk add freetype-dev libjpeg-turbo-dev libpng-dev
 RUN docker-php-ext-install gd
@@ -20,12 +19,6 @@ RUN docker-php-ext-install gd
 RUN apk add busybox-extras
 
 RUN docker-php-ext-install pdo mysqli pdo_mysql
-
-# Mailparse
-RUN apk add --no-cache \
-        $PHPIZE_DEPS \
-    && pecl install mailparse
-RUN docker-php-ext-enable mailparse
 
 
 # get compser
@@ -42,24 +35,20 @@ RUN	apk add --update openssh
 
 # Create known_hosts
 RUN mkdir /root/.ssh && touch /root/.ssh/known_hosts
-# Add bitbuckets key
-RUN ssh-keyscan bitbucket.org >> /root/.ssh/known_hosts
 
 #add mysql-client for running tests
 RUN	apk add --update mysql-client
 
 RUN	apk add nano
 
-
-RUN pecl install pcov
-RUN docker-php-ext-enable pcov
-
 RUN apk add git
 
-
 # Add xdebug
+#mailparse
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
 RUN apk add --update linux-headers
-RUN pecl install xdebug-3.2.0
-RUN docker-php-ext-enable xdebug
+RUN pecl install xdebug-3.2.0 mailparse
+RUN docker-php-ext-enable xdebug mailparse
 RUN apk del -f .build-deps
+RUN apk add jq
+
