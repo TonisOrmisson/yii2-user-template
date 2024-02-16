@@ -27,7 +27,8 @@
         "lajax/yii2-language-picker": "^1.2",
         "kartik-v/yii2-widget-select2": "^2.2",
         "yiisoft/yii2-bootstrap5": "^2.0",
-        "twbs/bootstrap-icons": "^1.10"
+        "twbs/bootstrap-icons": "^1.10",
+        "yetopen/yii2-sms-sender-interface": "^0.1.2"
 
 
     },
