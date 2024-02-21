@@ -24,7 +24,7 @@ services:
       - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     environment:
       - DB_TEST_DATABASE=tests
-      - DB_PASSWORD=password
+      - DB_PASSWORD=passwordcd
   db:
     image: mariadb:latest
     container_name: usuario_db
