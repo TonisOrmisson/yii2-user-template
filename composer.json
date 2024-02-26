@@ -19,7 +19,7 @@
         "yiisoft/yii2": "~2.0.5",
         "yiisoft/yii2-symfonymailer": "^2|^3",
 
-        "2amigos/2fa-library": "^1.0",
+        "2amigos/2fa-library": "^3.0",
         "2amigos/qrcode-library": "^3.0",
 
         "yiisoft/yii2-authclient": "^2.1",
