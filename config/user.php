@@ -16,6 +16,6 @@ return [
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
     ],
-    'viewPath' => '@Da/User/resources/views/bootstrap5'
+    //'viewPath' => '@Da/User/resources/views/bootstrap5'
 
 ];
