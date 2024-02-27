@@ -29,9 +29,8 @@
         "yiisoft/yii2-bootstrap5": "^2.0",
         "twbs/bootstrap-icons": "^1.10",
         "yetopen/yii2-sms-sender-interface": "^0.1.2"
-
-
     },
+
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3",
         "squizlabs/php_codesniffer": "*",

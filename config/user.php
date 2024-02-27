@@ -16,6 +16,7 @@ return [
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
     ],
+    'maxPasswordAge' => 1,
     //'viewPath' => '@Da/User/resources/views/bootstrap5'
 
 ];
