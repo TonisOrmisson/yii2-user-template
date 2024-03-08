@@ -19,6 +19,6 @@ return [
     //'viewPath' => '@Da/User/resources/views/bootstrap5',
     //'twoFactorAuthenticationForcedPermissions' => ['siteAdmin'],
     'enableTwoFactorAuthentication' => true,
-    'disableProfileViewsForRegularUsers' => true,
+    'profileVisibility' => 3
 
 ];
