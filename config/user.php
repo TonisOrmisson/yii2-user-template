@@ -10,13 +10,15 @@ return [
     'enableGdprCompliance' => true,
     'gdprRequireConsentToAll' => true,
     'gdprPrivacyPolicyUrl' => "/privacy",
-    'enableTwoFactorAuthentication' => true,
     'enableSessionHistory' => true,
     'allowAccountDelete' => true,
     'mailParams' => [
         'fromEmail' => $params['adminEmail'],
     ],
-    'maxPasswordAge' => 1,
-    //'viewPath' => '@Da/User/resources/views/bootstrap5'
+    //'maxPasswordAge' => 1,
+    //'viewPath' => '@Da/User/resources/views/bootstrap5',
+    //'twoFactorAuthenticationForcedPermissions' => ['siteAdmin'],
+    'enableTwoFactorAuthentication' => true,
+    'disableProfileViewsForRegularUsers' => true,
 
 ];

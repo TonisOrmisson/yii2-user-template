@@ -25,6 +25,8 @@ class AppBootstrap implements BootstrapInterface
             Yii::info("ping block", 'app');
             Yii::info("user blocked: {$event->sender->username}", 'app');
         });
+
+
     }
 
 }
