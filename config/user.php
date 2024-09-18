@@ -16,7 +16,7 @@ return [
         'fromEmail' => $params['adminEmail'],
     ],
     //'maxPasswordAge' => 1,
-    //'viewPath' => '@Da/User/resources/views/bootstrap3',
+    'viewPath' => '@Da/User/resources/views/bootstrap3',
     //'twoFactorAuthenticationForcedPermissions' => ['siteAdmin'],
     'enableTwoFactorAuthentication' => true,
     //'profileVisibility' => 3
