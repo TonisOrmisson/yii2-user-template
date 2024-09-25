@@ -11,6 +11,7 @@ $config = [
         \app\bootstraps\AppBootstrap::class
         ],
     'aliases' => require(__DIR__ . '/aliases.php'),
+    'layout' => 'main-bs3',
     'components' => [
         'authClientCollection' => require(__DIR__ . '/auth.php'),
         'request' => [

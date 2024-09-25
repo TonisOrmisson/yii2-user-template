@@ -4,6 +4,8 @@ return [
     'class' => \Da\User\Module::class,
     'allowUnconfirmedEmailLogin'=>true,
     'enableRegistration'=>true,
+    'generatePasswords' => false,
+    'offerPasswordChangeAfterConfirmation' => true,
     'enableFlashMessages'=>true,
     //'enableSwitchIdentities' => false,
     'administrators' => ['admin'],
@@ -16,7 +18,8 @@ return [
         'fromEmail' => $params['adminEmail'],
     ],
     //'maxPasswordAge' => 1,
-    'viewPath' => '@Da/User/resources/views/bootstrap3',
+    'viewPath' => '@Da/User/resources/views',
+    //'viewPath' => '@Da/User/resources/views/bootstrap3',
     //'twoFactorAuthenticationForcedPermissions' => ['siteAdmin'],
     'enableTwoFactorAuthentication' => true,
     //'profileVisibility' => 3
