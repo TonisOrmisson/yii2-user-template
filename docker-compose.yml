@@ -1,7 +1,6 @@
-version: '3'
 services:
   nginx:
-    image: evild/alpine-nginx:1.9.15-openssl
+    image: evild/alpine-nginx:stable
     container_name: usuario_nginx
     volumes:
       - ./:/var/www/html/:ro
@@ -35,5 +34,5 @@ services:
 
 networks:
   default:
-    external:
-      name: dev1
+    name: dev1
+    external: true

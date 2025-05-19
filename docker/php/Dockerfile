@@ -1,59 +1,63 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
-RUN apk update && apk add gettext-dev ffmpeg libxml2 libxml2-dev
+RUN apk add --no-cache gettext-dev ffmpeg libxml2 libxml2-dev
 RUN docker-php-ext-install pcntl bcmath xml
 
 RUN apk add --no-cache zip libzip-dev
 RUN docker-php-ext-install zip
 
-RUN apk add icu-dev
+RUN apk add --no-cache icu-dev
 RUN docker-php-ext-install intl gettext
 
-RUN apk add oniguruma-dev
+RUN apk add --no-cache oniguruma-dev
 RUN docker-php-ext-install mbstring
 
-RUN apk add freetype-dev libjpeg-turbo-dev libpng-dev
+RUN apk add --no-cache freetype-dev libjpeg-turbo-dev libpng-dev
 RUN docker-php-ext-install gd
 
 # telnet etc
-RUN apk add busybox-extras
+RUN apk add --no-cache busybox-extras
 
 RUN docker-php-ext-install pdo mysqli pdo_mysql
 
 
+# Install necessary packages for compiling Imagick
+# Install Imagick extension
+RUN apk add --update --no-cache autoconf g++ imagemagick imagemagick-dev imagemagick-pdf  libtool make pcre-dev
+RUN pecl install imagick \
+    && docker-php-ext-enable imagick
+
 # get compser
-RUN	apk update && \
-	apk upgrade && \
-	apk add --update curl openssl && \
+RUN	apk add  --no-cache curl openssl && \
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer  && \
 	chmod +x /usr/local/bin/composer && \
 	apk del curl openssl && \
 rm -rf /var/cache/apk/*
 
 # set key for getting private repos
-RUN	apk add --update openssh
+RUN	apk add --no-cache openssh
 
 # Create known_hosts
 RUN mkdir /root/.ssh && touch /root/.ssh/known_hosts
 
 #add mysql-client for running tests
-RUN	apk add --update mysql-client
+RUN	apk add --no-cache mysql-client
 
-RUN	apk add nano
+RUN	apk add --no-cache nano
 
-RUN apk add git
+RUN apk add --no-cache git
 
-# Add xdebug
 #mailparse
 RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
-RUN apk add --update linux-headers
-RUN pecl install xdebug-3.2.0 mailparse
-RUN docker-php-ext-enable xdebug mailparse
+RUN apk add --no-cache linux-headers
+RUN pecl install mailparse
+RUN docker-php-ext-enable mailparse
 RUN apk del -f .build-deps
-RUN apk add jq
 
-# add imagick
-RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS imagemagick-dev \
-&& pecl install imagick \
-&& docker-php-ext-enable imagick \
-&& apk del .build-deps
+
+RUN apk --no-cache add yarn
+
+# Install Xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
